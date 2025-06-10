@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #ffe0e9, #ffd6ec);
+  color: #4a004e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  text-align: center;
+  max-width: 800px;
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #ff4d88;
+}
+
+.message {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  animation: fadeIn 3s ease-in;
+}
+
+.gallery {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.gallery img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+button {
+  padding: 12px 24px;
+  font-size: 1.1em;
+  background-color: #ff4d88;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #e60073;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.carousel {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  display: none;
+  object-fit: cover;
+  height: 700px;
+  border-radius: 15px;
+}
+
+.slide.active {
+  display: block;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 77, 136, 0.7);
+  color: white;
+  border: none;
+  font-size: 2em;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.prev:hover, .next:hover {
+  background-color: #e60073;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
