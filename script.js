@@ -1,11 +1,8 @@
-function playMusic() {
-  const audio = document.getElementById("loveSong");
-  if (audio.paused) {
+  window.addEventListener("click", () => {
+    const audio = document.getElementById("loveSong");
+    audio.muted = false;
     audio.play();
-  } else {
-    audio.pause();
-  }
-}
+  }, { once: true });
 
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
@@ -19,10 +16,33 @@ function showSlide(index) {
   });
 }
 
-function moveSlide(n) {
-  currentSlide = (currentSlide + n + slides.length) % slides.length;
-  showSlide(currentSlide);
+function moveSlide(direction) {
+  const slides = document.querySelectorAll('.slide');
+  const currentIndex = [...slides].findIndex(slide => slide.classList.contains('active'));
+
+  // Remove slide atual
+  slides[currentIndex].classList.remove('active');
+
+  // Se for vídeo, pausar e reiniciar
+  if (slides[currentIndex].tagName === 'VIDEO') {
+    slides[currentIndex].pause();
+    slides[currentIndex].currentTime = 0;
+  }
+
+  // Calcular novo índice
+  let newIndex = currentIndex + direction;
+  if (newIndex < 0) newIndex = slides.length - 1;
+  if (newIndex >= slides.length) newIndex = 0;
+
+  // Ativar novo slide
+  slides[newIndex].classList.add('active');
+
+  // Se for vídeo, dar play
+  if (slides[newIndex].tagName === 'VIDEO') {
+    slides[newIndex].play();
+  }
 }
+
 
 // Auto slide (opcional)
 setInterval(() => {
